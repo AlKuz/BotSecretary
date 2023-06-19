@@ -4,6 +4,9 @@ from pydantic import BaseSettings, BaseModel
 
 class OpenAI(BaseModel):
     api_token: str
+    model: str
+    max_messages: int
+    temperature: float
 
 
 class Telegram(BaseModel):
@@ -11,10 +14,16 @@ class Telegram(BaseModel):
     bot_token: str
 
 
+class Application(BaseModel):
+    background_path: str
+    style_path: str
+
+
 class Config(BaseSettings):
 
     openai: OpenAI
     telegram: Telegram
+    app: Application
 
     class Config:
         env_nested_delimiter = '__'
