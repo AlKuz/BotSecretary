@@ -5,11 +5,19 @@ from urllib.parse import quote
 
 class OpenAI(BaseModel):
     api_token: str
+    model: str
+    max_messages: int
+    temperature: float
 
 
 class Telegram(BaseModel):
     bot_name: str
     bot_token: str
+
+
+class Application(BaseModel):
+    background_path: str
+    style_path: str
 
 
 class Database(BaseModel):
@@ -34,6 +42,7 @@ class Config(BaseSettings):
     openai: OpenAI
     telegram: Telegram
     database: Database
+    app: Application
 
     class Config:
         env_nested_delimiter = '__'
