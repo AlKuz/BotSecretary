@@ -4,7 +4,6 @@ import shutil
 
 from jinja2 import Template
 from pathlib import Path
-from typing import Iterator
 
 
 @pytest.fixture

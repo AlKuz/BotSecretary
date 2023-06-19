@@ -13,7 +13,7 @@ def test_prompt_render(mock_template: Template):
 
 def test_prompt_chunks(mock_template: Template):
     prompt = Prompt(mock_template, 2500, name='Test')
-    assert list(prompt.chunks) == ['Hello Test']
+    assert prompt.chunks == ['Hello Test']
 
 
 def test_prompt_chunks_lorem(mock_template_lorem: Template):
