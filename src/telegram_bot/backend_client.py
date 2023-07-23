@@ -1,9 +1,11 @@
+import sys
+
 import aiohttp
 
 from loguru import logger
 from pydantic import UUID4
 
-from schemas import MessageRequest, MessageResponse
+from .schemas import MessageRequest, MessageResponse
 
 
 class Client:
@@ -18,6 +20,9 @@ class Client:
                 if response.status == 404:
                     self.__logger.info(f"Client '{telegram_id}' not found")
                     return None
+                elif response.status == 500:
+                    self.__logger.error(f"Receiving user '{telegram_id}' was failed on the server side")
+                    return None
                 data = await response.json()
                 return data.get("user_id")
 
@@ -25,7 +30,7 @@ class Client:
         async with aiohttp.ClientSession(self.__url) as session:
             async with session.post("/users", data={"telegram_id": telegram_id}) as response:
                 if response.status == 500:
-                    self.__logger.error(f"User '{telegram_id}' wasn't created")
+                    self.__logger.error(f"Creating user '{telegram_id}' was failed on the server side")
                     return None
                 data = await response.json()
                 return data.get("user_id")

@@ -3,9 +3,9 @@ from loguru import logger
 from telegram import Update, InlineKeyboardMarkup, InlineKeyboardButton
 from telegram.ext import filters, Application, ContextTypes, CommandHandler, MessageHandler
 
-from backend_client import Client
-from config import Config
-from schemas import Context, UUID4, MessageRequest, MessageResponse
+from .backend_client import Client
+from .config import Config
+from .schemas import Context, UUID4, MessageRequest, MessageResponse
 
 
 class BaseExecutor(ABC):

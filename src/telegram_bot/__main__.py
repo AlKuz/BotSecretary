@@ -1,7 +1,7 @@
 from telegram.ext import ApplicationBuilder
 
-from handlers import add_handlers
-from config import Config
+from .handlers import add_handlers
+from .config import Config
 
 
 config = Config()
