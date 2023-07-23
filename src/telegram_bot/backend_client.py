@@ -1,5 +1,3 @@
-import sys
-
 import aiohttp
 
 from loguru import logger
